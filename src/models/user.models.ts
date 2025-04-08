@@ -2,6 +2,7 @@ import mongoose, {Schema, Document} from "mongoose";
 // Document is for the Type safety introduced
 
 export interface Message extends Document{
+    _id: string;
     content: string,
     createdAt: Date
 }
