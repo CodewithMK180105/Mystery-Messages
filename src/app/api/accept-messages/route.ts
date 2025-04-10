@@ -27,7 +27,9 @@ export async function POST(request: Request){
 
         if(!result.success){
             return Response.json(
-                { success: false, message: "Invalid request data", 
+                { 
+                    success: false, 
+                    message: "Invalid request data", 
                     errors: result.error.format() 
                 },
                 { status: 400 }
@@ -92,7 +94,7 @@ export async function GET(request: Request){
         return Response.json({
             success: true,
             isAcceptingMessages: foundUser.isAcceptingMessage
-    
+            
         }, {status: 200});
     } catch (error) {
         console.log("Error in getting the message acceptance status");
