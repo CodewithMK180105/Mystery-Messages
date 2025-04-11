@@ -1,113 +1,192 @@
-import Image from "next/image";
+"use client";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { Button } from "@/components/ui/button";
+import { MessageCircle, Lock, Shield, Sparkles, HelpCircle } from "lucide-react"; // Added more icons
+import messages from "@/messages.json";
 
-export default function Home() {
+const Page = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
+    <main className="min-h-screen bg-gray-50 text-gray-900 flex flex-col items-center px-4 md:px-24 py-12">
+      {/* Hero Section */}
+      <section className="text-center mb-12 md:mb-16 max-w-3xl">
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight animate-fade-in text-gray-800">
+          Share Your Secrets Anonymously
+        </h1>
+        <p className="mt-4 text-lg md:text-xl text-gray-600">
+          Send messages without revealing who you are. Discover the joy of anonymous conversations with{" "}
+          <span className="font-semibold text-purple-500">Mystery Message</span>.
         </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+        <Button
+          className="mt-6 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-full transition-transform transform hover:scale-105"
+          asChild
+        >
+          <a href="/send-message">Start Sending Now</a>
+        </Button>
+      </section>
+
+      {/* Carousel Section */}
+      <section className="w-full max-w-md md:max-w-2xl mb-16">
+        <Carousel
+          className="w-full"
+          plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
+          opts={{ loop: true }}
+        >
+          <CarouselContent>
+            {messages.map((message, index) => (
+              <CarouselItem key={index}>
+                <div className="p-2">
+                  <Card className="bg-white border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <CardHeader className="text-purple-500 font-semibold">
+                      {message.title}
+                    </CardHeader>
+                    <CardContent className="flex items-center justify-center p-6 text-gray-700">
+                      <span className="text-lg text-center">{message.content}</span>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="text-gray-600 bg-gray-100 hover:bg-gray-200" />
+          <CarouselNext className="text-gray-600 bg-gray-100 hover:bg-gray-200" />
+        </Carousel>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="max-w-4xl text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">How It Works</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex flex-col items-center">
+            <Lock className="w-12 h-12 text-purple-500 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-800">Write Your Message</h3>
+            <p className="text-gray-600 mt-2">
+              Type your thoughts, secrets, or confessions without signing in.
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <MessageCircle className="w-12 h-12 text-purple-500 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-800">Send Anonymously</h3>
+            <p className="text-gray-600 mt-2">
+              Share your message securely without revealing your identity.
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <Shield className="w-12 h-12 text-purple-500 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-800">Stay Mysterious</h3>
+            <p className="text-gray-600 mt-2">
+              Recipients see your message, but never know it’s you.
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      {/* Features Section */}
+      <section className="max-w-4xl text-center mb-16 bg-white py-12 px-6 rounded-lg shadow-md">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">Why Choose Mystery Message?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex flex-col items-center">
+            <Shield className="w-12 h-12 text-purple-500 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-800">Guaranteed Privacy</h3>
+            <p className="text-gray-600 mt-2">
+              Your identity is never stored or shared, ensuring total anonymity.
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <Sparkles className="w-12 h-12 text-purple-500 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-800">Easy to Use</h3>
+            <p className="text-gray-600 mt-2">
+              Send messages in seconds with a simple, intuitive interface.
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <MessageCircle className="w-12 h-12 text-purple-500 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-800">Customizable Messages</h3>
+            <p className="text-gray-600 mt-2">
+              Add flair to your messages with themes and styles.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+      {/* Testimonials Section */}
+      <section className="max-w-4xl text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">What Users Are Saying</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Card className="bg-white border-gray-200 shadow-md">
+            <CardContent className="p-6">
+              <p className="text-gray-700 italic">
+                &quot;I sent a heartfelt message to a friend without them knowing it was me. It felt so freeing!&quot;
+              </p>
+              <p className="mt-4 text-purple-500 font-semibold">— Anonymous User</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-white border-gray-200 shadow-md">
+            <CardContent className="p-6">
+              <p className="text-gray-700 italic">
+                &quot;The interface is so simple, and I love that my privacy is protected.&quot;
+              </p>
+              <p className="mt-4 text-purple-500 font-semibold">— Mystery Sender</p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="max-w-4xl text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="text-left">
+            <h3 className="text-xl font-semibold text-gray-800 flex items-center">
+              <HelpCircle className="w-6 h-6 text-purple-500 mr-2" />
+              Is my message really anonymous?
+            </h3>
+            <p className="text-gray-600 mt-2">
+              Yes! We don’t collect or store any personal information, ensuring your identity remains hidden.
+            </p>
+          </div>
+          <div className="text-left">
+            <h3 className="text-xl font-semibold text-gray-800 flex items-center">
+              <HelpCircle className="w-6 h-6 text-purple-500 mr-2" />
+              Can I send messages to anyone?
+            </h3>
+            <p className="text-gray-600 mt-2">
+              You can send messages to anyone with a valid link or email, as long as you follow our guidelines.
+            </p>
+          </div>
+          <div className="text-left">
+            <h3 className="text-xl font-semibold text-gray-800 flex items-center">
+              <HelpCircle className="w-6 h-6 text-purple-500 mr-2" />
+              Are there any limits on messages?
+            </h3>
+            <p className="text-gray-600 mt-2">
+              You can send unlimited messages, but we have safeguards to prevent spam or misuse.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Footer */}
+      <section className="text-center py-12 bg-purple-100 w-full">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800">
+          Ready to Share Your Secret?
+        </h2>
+        <Button
+          className="bg-purple-500 text-white hover:bg-purple-600 font-semibold py-3 px-8 rounded-full transition-transform transform hover:scale-105"
+          asChild
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+          <a href="/send-message">Send a Message Now</a>
+        </Button>
+      </section>
     </main>
   );
-}
+};
+
+export default Page;
