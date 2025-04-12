@@ -11,10 +11,22 @@ import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Lock, Shield, Sparkles, HelpCircle } from "lucide-react"; // Added more icons
 import messages from "@/messages.json";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 const Page = () => {
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-900 flex flex-col items-center px-4 md:px-24 py-12">
+    <main className="relative bg-gray-50 text-gray-900 flex flex-col items-center px-4 md:px-24 py-12">
+      <div className="w-full absolute inset-0 h-screen">
+        <SparklesCore
+          id="tsparticlesfullpage"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={100}
+          className="w-full h-full"
+          particleColor="#000000"
+        />
+      </div>
       {/* Hero Section */}
       <section className="text-center mb-12 md:mb-16 max-w-3xl">
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight animate-fade-in text-gray-800">
@@ -55,11 +67,13 @@ const Page = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="text-gray-600 bg-gray-100 hover:bg-gray-200" />
-          <CarouselNext className="text-gray-600 bg-gray-100 hover:bg-gray-200" />
+          <CarouselPrevious className="text-gray-600 bg-gray-100 hover:bg-gray-200 hidden sm:flex" />
+          <CarouselNext className="text-gray-600 bg-gray-100 hover:bg-gray-200 hidden sm:flex" />
         </Carousel>
       </section>
 
+
+      
       {/* How It Works Section */}
       <section className="max-w-4xl text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">How It Works</h2>
@@ -88,6 +102,7 @@ const Page = () => {
         </div>
       </section>
 
+      
       {/* Features Section */}
       <section className="max-w-4xl text-center mb-16 bg-white py-12 px-6 rounded-lg shadow-md">
         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">Why Choose Mystery Message?</h2>

@@ -26,7 +26,7 @@ const Dashboard = () => {
     setMessages(messages.filter((message)=>message._id!==messageId));
   }
 
-  const {data: session}= useSession();
+  const {data: session, status}= useSession();
 
   const form=useForm({
     resolver: zodResolver(AcceptMessageSchema)
@@ -102,6 +102,10 @@ const Dashboard = () => {
         variant:"destructive"
       });
     }
+  }
+
+  if (!session || !session.user) {
+    return <div>Please Login</div>;
   }
 
   const {username}=session?.user as User;
