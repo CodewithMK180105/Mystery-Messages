@@ -137,7 +137,7 @@ const Page = () => {
             <p>
               Already a member? {' '}
               <Link href="sign-up" className="text-blue-600 hover:to-blue-800">
-                Sign in
+                Sign up
               </Link>
             </p>
         </div>
