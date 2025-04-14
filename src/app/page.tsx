@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle, Lock, Shield, Sparkles, HelpCircle } from "lucide-react"; // Added more icons
 import messages from "@/messages.json";
 import { SparklesCore } from "@/components/ui/sparkles";
+import Link from "next/link";
 
 const Page = () => {
   return (
@@ -36,12 +37,14 @@ const Page = () => {
           Send messages without revealing who you are. Discover the joy of anonymous conversations with{" "}
           <span className="font-semibold text-purple-500">Mystery Message</span>.
         </p>
-        <Button
-          className="mt-6 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-full transition-transform transform hover:scale-105"
-          asChild
-        >
-          <a href="/send-message">Start Sending Now</a>
-        </Button>
+        <Link href="/select_user">
+          <Button
+            className="mt-6 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-full transition-transform transform hover:scale-105"
+            asChild
+          >
+            <a href="/send-message">Start Sending Now</a>
+          </Button>
+        </Link>
       </section>
 
       {/* Carousel Section */}
