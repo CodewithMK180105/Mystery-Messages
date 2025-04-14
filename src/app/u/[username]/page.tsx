@@ -106,7 +106,7 @@ export default function SendMessagePage() {
               isSubmitting? 
                 (<>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please Wait...
-                </>) : "SignUp"
+                </>) : "Send Message"
             }
           </Button>
         </form>
