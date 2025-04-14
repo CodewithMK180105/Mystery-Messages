@@ -47,7 +47,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Protect /dashboard for unauthenticated users
-  if (!token && (url.pathname.startsWith('/dashboard') || url.pathname.startsWith('/u'))) {
+  if (!token && (url.pathname.startsWith('/dashboard') || url.pathname.startsWith('/u') || url.pathname.startsWith('/select_user'))) {
     return NextResponse.redirect(new URL('/sign-in', request.url));
   }
 
@@ -56,5 +56,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/sign-in', '/sign-up', '/verify/:path*', '/dashboard/:path*', '/u/:path*'],
+  matcher: ['/sign-in', '/sign-up', '/verify/:path*', '/dashboard/:path*', '/u/:path*', '/select_user'],
 };
