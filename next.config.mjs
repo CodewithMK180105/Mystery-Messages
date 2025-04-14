@@ -6,6 +6,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'static.vecteezy.com',
+        pathname: '/system/resources/previews/**',
+      },
     ],
   },
 };

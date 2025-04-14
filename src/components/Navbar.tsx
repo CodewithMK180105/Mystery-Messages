@@ -39,19 +39,19 @@ const Navbar = () => {
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center space-x-6">
           <Link
-            href="/"
+            href="/dashboard"
             className="text-gray-600 hover:text-purple-500 transition-colors duration-200"
           >
-            Home
+            Dashboard
           </Link>
-          <Link
+          {/* <Link
             href="/about"
             className="text-gray-600 hover:text-purple-500 transition-colors duration-200"
           >
-            About
-          </Link>
+            Users
+          </Link> */}
           <Link
-            href="/send-message"
+            href="/select_user"
             className="text-gray-600 hover:text-purple-500 transition-colors duration-200"
           >
             Send Message
@@ -96,22 +96,22 @@ const Navbar = () => {
           </button>
         </div>
         <div className="flex flex-col items-start space-y-6 p-6">
-          <Link
+          {/* <Link
             href="/"
             className="w-full text-lg text-gray-800 font-semibold hover:bg-purple-100 hover:text-purple-600 px-4 py-2 rounded-lg transition-all duration-200"
             onClick={toggleSidebar}
           >
             Home
-          </Link>
+          </Link> */}
           <Link
-            href="/about"
+            href="/dashboard"
             className="w-full text-lg text-gray-800 font-semibold hover:bg-purple-100 hover:text-purple-600 px-4 py-2 rounded-lg transition-all duration-200"
             onClick={toggleSidebar}
           >
-            About
+            Dashboard
           </Link>
           <Link
-            href="/send-message"
+            href="/select_user"
             className="w-full text-lg text-gray-800 font-semibold hover:bg-purple-100 hover:text-purple-600 px-4 py-2 rounded-lg transition-all duration-200"
             onClick={toggleSidebar}
           >

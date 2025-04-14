@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 
+
 // Define User interface
 interface User {
   id: string;
@@ -38,7 +39,7 @@ const UserCard: React.FC<{
       {/* {user.avatar && ( */}
         <div className="relative">
           <Image
-            src="https://res.cloudinary.com/dffoynel3/image/upload/v1740050201/aulit5kiqo6mxh041bjf.png"
+            src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
             alt={user.username}
             width={view === "grid" ? 120 : 60}
             height={view === "grid" ? 120 : 60}
@@ -96,7 +97,7 @@ const SelectUserPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 p-8">
+    <div className="min-h-screen p-8">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-purple-900">
