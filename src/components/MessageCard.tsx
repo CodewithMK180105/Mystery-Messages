@@ -37,12 +37,14 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
   const handleDeleteConfirm = async () => {
     try {
       const response = await axios.delete<ApiResponse>(`/api/delete-message/${message._id}`);
+      // console.log(response);
       toast({
         title: "Message deleted",
         description: response.data.message,
       });
       onMessageDelete(message._id);
     } catch (error) {
+      
       toast({
         title: "Error",
         description: "Failed to delete the message",
