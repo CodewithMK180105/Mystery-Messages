@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
+import axios from "axios";
+import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 export default function SendMessagePage() {
   const { username } = useParams(); // Extract username from URL
@@ -27,13 +30,12 @@ export default function SendMessagePage() {
 
     try {
       // Placeholder API call (replace with your backend)
-      const response = await fetch("/api/send-message", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ recipient: username, message: message.trim() }),
+      const response =await axios.post("/api/send-message", {
+        username,
+        content: message.trim(),
       });
-
-      if (!response.ok) throw new Error("Failed to send message");
+      // console.log(response);
+      if (!response.data.success) throw new Error("Failed to send message");
 
       setMessage("");
       setFeedback({ type: "success", text: "Message sent successfully!" });
@@ -49,7 +51,7 @@ export default function SendMessagePage() {
       <div className="w-full max-w-lg bg-white rounded-lg shadow-sm p-8">
         {/* Heading */}
         <h1 className="text-2xl font-semibold text-gray-800 text-center mb-2">
-          Anonymous Message to <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-700">@{username}</span>
+          Anonymous Message to <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-700">@{username}</span>
         </h1>
 
         {/* Subheading */}
@@ -95,17 +97,21 @@ export default function SendMessagePage() {
             </p>
           )}
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
+          <Button type="submit" disabled={isSubmitting}
             className={`w-full py-2.5 rounded-lg font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors ${
               isSubmitting ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
-            {isSubmitting ? "Sending..." : "Send Message"}
-          </button>
+            {
+              isSubmitting? 
+                (<>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please Wait...
+                </>) : "SignUp"
+            }
+          </Button>
         </form>
       </div>
     </div>
   );
 }
+

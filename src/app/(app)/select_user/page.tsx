@@ -1,7 +1,8 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 
 // Define User interface
 interface User {
@@ -34,10 +35,10 @@ const UserCard: React.FC<{
       } border border-purple-200`}
       onClick={() => onSelect(user)}
     >
-      {user.avatar && (
+      {/* {user.avatar && ( */}
         <div className="relative">
           <Image
-            src={user.avatar}
+            src="https://res.cloudinary.com/dffoynel3/image/upload/v1740050201/aulit5kiqo6mxh041bjf.png"
             alt={user.username}
             width={view === "grid" ? 120 : 60}
             height={view === "grid" ? 120 : 60}
@@ -45,7 +46,7 @@ const UserCard: React.FC<{
           />
           <div className="absolute inset-0 rounded-full bg-purple-500 opacity-0 hover:opacity-10 transition-opacity duration-300" />
         </div>
-      )}
+      {/* )} */}
       <div
         className={`${
           view === "grid" ? "mt-4 text-center" : "ml-4 flex-1"
@@ -73,11 +74,26 @@ const UserCard: React.FC<{
 const SelectUserPage: React.FC = () => {
   const [view, setView] = useState<"grid" | "list">("grid");
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [users, setUsers] = useState<User[]>([]);
+
 
   const handleSelectUser = (user: User) => {
     setSelectedUser(user);
     // Extend with routing or modal for message sending
   };
+
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get("/api/users");
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Failed to fetch users:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 p-8">
@@ -122,7 +138,7 @@ const SelectUserPage: React.FC = () => {
                 : "flex flex-col space-y-4"
             }`}
           >
-            {mockUsers.map((user) => (
+            {users.map((user) => (
               <UserCard
                 key={user.id}
                 user={user}
