@@ -197,7 +197,7 @@ const Page = () => {
           className="bg-purple-500 text-white hover:bg-purple-600 font-semibold py-3 px-8 rounded-full transition-transform transform hover:scale-105"
           asChild
         >
-          <a href="/send-message">Send a Message Now</a>
+          <a href="/select_user">Send a Message Now</a>
         </Button>
       </section>
     </main>
