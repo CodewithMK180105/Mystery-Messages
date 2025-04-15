@@ -78,7 +78,7 @@ const Page = () => {
             Join Mystery Message
           </h1>
           <p className="mb-4">
-            Sign up to start your anonymous adventure
+            Welcome back to your anonymous journey
           </p>
         </div>
         <Form {...form}>
@@ -97,7 +97,7 @@ const Page = () => {
                   />
                 </FormControl>
                 <FormDescription>
-                  This is your public display name.
+                  Enter your email or the Username
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -117,7 +117,7 @@ const Page = () => {
                   />
                 </FormControl>
                 <FormDescription>
-                  This is your public display name.
+                  Enter your password
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -135,7 +135,7 @@ const Page = () => {
         </Form>
         <div className="text-center mt-4">
             <p>
-              Already a member? {' '}
+              Don&apos;t have an account? {' '}
               <Link href="sign-up" className="text-blue-600 hover:to-blue-800">
                 Sign up
               </Link>

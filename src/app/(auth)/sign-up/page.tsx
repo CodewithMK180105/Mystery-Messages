@@ -149,7 +149,7 @@ const Page = () => {
                   />
                 </FormControl>
                 <FormDescription>
-                  This is your public display name.
+                  Your email address is 100% private — it won&apos;t be shared, seen, or read by anyone.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -169,7 +169,7 @@ const Page = () => {
                   />
                 </FormControl>
                 <FormDescription>
-                  This is your public display name.
+                  Set up a strong password
                 </FormDescription>
                 <FormMessage />
               </FormItem>
