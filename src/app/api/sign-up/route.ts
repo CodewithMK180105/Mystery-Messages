@@ -60,9 +60,11 @@ export async function POST(request: Request){
         }
 
         const emailResponse=await sendVerificationEmail(
-            email,
-            username,
-            verifyCode
+            {
+                email,
+                username,
+                otp: verifyCode
+            }
         )
 
         if(!emailResponse.success){
