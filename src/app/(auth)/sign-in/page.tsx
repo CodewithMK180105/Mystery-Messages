@@ -55,7 +55,7 @@ const Page = () => {
           description: "Incorrect username/email or password",
           variant: "destructive",
         });
-      } else if (result?.url) {
+      } else {
         router.replace('/dashboard');
       }
     } catch (error) {
