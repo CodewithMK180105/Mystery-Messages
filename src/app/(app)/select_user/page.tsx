@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
+import { LucideMessageSquareText } from "lucide-react";
 
 
 // Define User interface
@@ -31,7 +32,7 @@ const UserCard: React.FC<{
     <div
       className={`flex ${
         view === "grid"
-          ? "flex-col items-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 mx-auto w-full"
+          ? "flex-col items-center py-2 px-4 md:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 mx-auto w-full"
           : "flex-row items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg w-full transition-all duration-300"
       } border border-purple-200`}
       onClick={() => onSelect(user)}
@@ -53,7 +54,7 @@ const UserCard: React.FC<{
           view === "grid" ? "mt-4 text-center" : "ml-4 flex-1"
         }`}
       >
-        <h3 className="text-xl font-semibold text-purple-900">{user.username}</h3>
+        <h3 className="text-md md:text-xl font-semibold text-purple-900">{user.username.length>10? `${user.username.slice(0,8)}...` :user.username}</h3>
         {view === "list" && (
           <p className="text-sm text-purple-600 mt-1">
             Send an anonymous message
@@ -62,9 +63,14 @@ const UserCard: React.FC<{
       </div>
       <Link href={`/u/${user.username}`}>
         <button
-          className="mt-4 bg-purple-600 text-white px-5 py-2 rounded-full hover:bg-purple-700 transition-colors duration-300 font-medium"
+          className="hidden md:block mt-4 bg-purple-600 text-white px-5 py-2 rounded-full hover:bg-purple-700 transition-colors duration-300 font-medium"
         >
           Message
+        </button>
+        <button
+          className="md:hidden mt-4 bg-purple-600 text-white px-5 py-2 rounded-full hover:bg-purple-700 transition-colors duration-300 font-medium"
+        >
+          <LucideMessageSquareText />
         </button>
       </Link>
     </div>
@@ -100,7 +106,7 @@ const SelectUserPage: React.FC = () => {
     <div className="min-h-screen p-8">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-purple-900">
+          <h1 className="text-xl md:text-3xl font-bold text-purple-900">
             Choose a Recipient
           </h1>
           <div className="flex space-x-3 mt-4 sm:mt-0">
@@ -135,8 +141,8 @@ const SelectUserPage: React.FC = () => {
           <div
             className={`${
               view === "grid"
-                ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-auto"
-                : "flex flex-col space-y-4"
+                ? "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-6 px-auto"
+                : "flex flex-col space-y-2"
             }`}
           >
             {users.map((user) => (
